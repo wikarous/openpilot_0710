@@ -97,6 +97,8 @@ class CarController():
     self.opkr_variablecruise = int(self.params.get('OpkrVariableCruise'))
     self.opkr_autoresume = int(self.params.get('OpkrAutoResume'))
 
+    self.opkr_maxanglelimit = int(self.params.get('OpkrMaxAngleLimit'))
+
     self.steer_mode = ""
     self.mdps_status = ""
     self.lkas_switch = ""
@@ -175,9 +177,10 @@ class CarController():
     spas_active = CS.spas_enabled and enabled and (self.spas_always or CS.out.vEgo < 7.0) # 25km/h
 
     # disable if steer angle reach 90 deg, otherwise mdps fault in some models
-    # temporarily disable steering when LKAS button off 
-    #lkas_active = enabled and abs(CS.out.steeringAngle) < 90. and not spas_active
-    lkas_active = enabled and abs(CS.out.steeringAngle) < 90. and not spas_active
+    if self.opkr_maxanglelimit >= 90:
+      lkas_active = enabled and abs(CS.out.steeringAngle) < self.opkr_maxanglelimit and not spas_active
+    else:
+      lkas_active = enabled and not spas_active
 
     if (( CS.out.leftBlinker and not CS.out.rightBlinker) or ( CS.out.rightBlinker and not CS.out.leftBlinker)) and CS.out.vEgo < LANE_CHANGE_SPEED_MIN:
       self.lanechange_manual_timer = 10

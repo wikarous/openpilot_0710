@@ -119,6 +119,7 @@ keys = {
   b"DebugUi1": [TxType.PERSISTENT],
   b"DebugUi2": [TxType.PERSISTENT],
   b"OpkrBlindSpotDetect": [TxType.PERSISTENT],
+  b"OpkrMaxAngleLimit": [TxType.PERSISTENT],
 }
 
 def ensure_bytes(v):

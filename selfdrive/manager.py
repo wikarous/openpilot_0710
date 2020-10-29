@@ -622,6 +622,7 @@ def main():
     ("DebugUi1", "0"),
     ("DebugUi2", "0"),
     ("OpkrBlindSpotDetect", "0"),
+    ("OpkrMaxAngleLimit", "90"),
   ]
 
   # set unset params
