@@ -1,10 +1,9 @@
 import math
 import numpy as np
 
-from cereal import log
+from cereal import car, log
 import cereal.messaging as messaging
 
-import cereal.messaging as messaging
 from selfdrive.config import Conversions as CV
 from selfdrive.controls.lib.planner import calc_cruise_accel_limits
 from selfdrive.controls.lib.speed_smoother import speed_smoother
@@ -234,7 +233,7 @@ class SpdController():
         return time, set_speed
 
     # returns a 
-    def update_lead(self, c, can_strings):
+    def update_lead(self, c, can_strings, sm):
         raise NotImplementedError
 
     def update_curv(self, CS, sm, model_speed):
@@ -262,7 +261,7 @@ class SpdController():
 
 
         # 선행 차량 거리유지
-        lead_wait_cmd, lead_set_speed = self.update_lead( CS, dRel, yRel, vRel)
+        lead_wait_cmd, lead_set_speed = self.update_lead( CS, dRel, yRel, vRel, sm)
 
         # 커브 감속.
         model_speed = CC.model_speed   #calc_va( CS.out.vEgo )
