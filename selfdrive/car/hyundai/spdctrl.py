@@ -83,16 +83,16 @@ class Spdctrl(SpdController):
             self.seq_step_debug = "s<-5,d<40,-2"
             lead_wait_cmd, lead_set_speed = self.get_tm_speed(CS, 60, -2)
         elif self.cruise_set_speed_kph > (int(round((CS.clu_Vanz))) + 1):  #이온설정속도가 차량속도보다 큰경우
-            if lead_objspd > 5 and CS.clu_Vanz > 25 and CS.VSetDis < 40: # 처음출발시 선행차량 급가속할 때 차량속도 20되기 전 최대한 설정속도 업 한 후 대기
-                self.seq_step_debug = "SS>VS,초가"
-                lead_wait_cmd, lead_set_speed = self.get_tm_speed( CS, 5, 5)
-            elif lead_objspd > 5 and CS.clu_Vanz > 40 and CS.VSetDis < 55: # 처음출발시 선행차량 급가속할 때 차량속도 20되기 전 최대한 설정속도 업 한 후 대기
-                self.seq_step_debug = "SS>VS,중가"
-                lead_wait_cmd, lead_set_speed = self.get_tm_speed( CS, 5, 5)
-            elif lead_objspd > 5 and CS.clu_Vanz > 60 and CS.VSetDis < 75: # 처음출발시 선행차량 급가속할 때 차량속도 20되기 전 최대한 설정속도 업 한 후 대기
-                self.seq_step_debug = "SS>VS,종가"
-                lead_wait_cmd, lead_set_speed = self.get_tm_speed( CS, 5, 5)
-            elif lead_objspd >= 0 and CS.clu_Vanz >= (int(CS.VSetDis) - 7) and int(CS.clu_Vanz * 0.5) < dRel:
+            #if lead_objspd > 5 and CS.clu_Vanz > 25 and CS.VSetDis < 40: # 처음출발시 선행차량 급가속할 때 차량속도 20되기 전 최대한 설정속도 업 한 후 대기
+            #    self.seq_step_debug = "SS>VS,초가"
+            #    lead_wait_cmd, lead_set_speed = self.get_tm_speed( CS, 5, 5)
+            #elif lead_objspd > 5 and CS.clu_Vanz > 40 and CS.VSetDis < 55: # 처음출발시 선행차량 급가속할 때 차량속도 20되기 전 최대한 설정속도 업 한 후 대기
+            #    self.seq_step_debug = "SS>VS,중가"
+            #    lead_wait_cmd, lead_set_speed = self.get_tm_speed( CS, 5, 5)
+            #elif lead_objspd > 5 and CS.clu_Vanz > 60 and CS.VSetDis < 75: # 처음출발시 선행차량 급가속할 때 차량속도 20되기 전 최대한 설정속도 업 한 후 대기
+            #    self.seq_step_debug = "SS>VS,종가"
+            #    lead_wait_cmd, lead_set_speed = self.get_tm_speed( CS, 5, 5)
+            if lead_objspd >= 0 and CS.clu_Vanz >= (int(CS.VSetDis) - 7) and int(CS.clu_Vanz * 0.5) < dRel:
                 self.seq_step_debug = "SS>VS,+3"
                 lead_wait_cmd, lead_set_speed = self.get_tm_speed( CS, 60, 3)
             elif CS.clu_Vanz > 50 and lead_objspd < 0 and int(CS.clu_Vanz * 0.3) > dRel:
