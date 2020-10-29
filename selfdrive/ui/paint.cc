@@ -1120,11 +1120,25 @@ static void ui_draw_vision_car(UIState *s) {
   const int car_img_x_right = (car_x_right - (car_img_size_w / 2));
   const int car_img_y = (car_y - (car_size / 4));
 
+  int car_valid_status = 0;
   bool car_valid_left = scene->leftblindspot;
   bool car_valid_right = scene->rightblindspot;
   float car_img_alpha;
   if (s->nOpkrBlindSpotDetect == 1) {
-    if(car_valid_left || car_valid_right) {
+    if (s->car_valid_status_changed != car_valid_status) {
+      s->scene.blindspot_blinkingrate = 114;
+      s->car_valid_status_changed = car_valid_status;
+    }
+    if (car_valid_left || car_valid_right) {
+      if (!car_valid_left && car_valid_right) {
+        car_valid_status = 1;
+      } else if (car_valid_left && !car_valid_right) {
+        car_valid_status = 2;
+      } else if (car_valid_left && car_valid_right) {
+        car_valid_status = 3;
+      } else {
+        car_valid_status = 0;
+      }
       s->scene.blindspot_blinkingrate -= 6;
       if(scene->blindspot_blinkingrate<0) s->scene.blindspot_blinkingrate = 120;
       if (scene->blindspot_blinkingrate>=60) {
@@ -1132,6 +1146,8 @@ static void ui_draw_vision_car(UIState *s) {
       } else {
         car_img_alpha = 0.0f;
       }
+    } else {
+      s->scene.blindspot_blinkingrate = 120;
     }
 
     if(car_valid_left) {
