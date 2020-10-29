@@ -1125,9 +1125,9 @@ static void ui_draw_vision_car(UIState *s) {
   bool car_valid_right = scene->rightblindspot;
   float car_img_alpha;
   if (s->nOpkrBlindSpotDetect == 1) {
-    if (s->car_valid_status_changed != car_valid_status) {
+    if (s->scene.car_valid_status_changed != car_valid_status) {
       s->scene.blindspot_blinkingrate = 114;
-      s->car_valid_status_changed = car_valid_status;
+      s->scene.ar_valid_status_changed = car_valid_status;
     }
     if (car_valid_left || car_valid_right) {
       if (!car_valid_left && car_valid_right) {
