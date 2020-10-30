@@ -439,9 +439,9 @@ static void ui_draw_tpms(UIState *s) {
   char tpmsFr[32];
   char tpmsRl[32];
   char tpmsRr[32];
-  int viz_tpms_w = 230;
-  int viz_tpms_h = 140;
-  int viz_tpms_x = s->scene.viz_rect.x + s->scene.viz_rect.w - 500;
+  int viz_tpms_w = 250;
+  int viz_tpms_h = 150;
+  int viz_tpms_x = s->scene.viz_rect.x + s->scene.viz_rect.w - 510;
   int viz_tpms_y = s->scene.viz_rect.y + (bdr_s*1.5);
   float maxv = 0;
   float minv = 300;
@@ -473,14 +473,14 @@ static void ui_draw_tpms(UIState *s) {
 
   // Draw Background
   if ((maxv - minv) > 3) {
-    ui_draw_rect(s->vg, viz_tpms_x, viz_tpms_y, viz_tpms_w, viz_tpms_h, COLOR_RED_ALPHA(80), 30);    
+    ui_draw_rect(s->vg, viz_tpms_x, viz_tpms_y, viz_tpms_w, viz_tpms_h, COLOR_RED_ALPHA(80), 20);    
   } else {
-    ui_draw_rect(s->vg, viz_tpms_x, viz_tpms_y, viz_tpms_w, viz_tpms_h, COLOR_BLACK_ALPHA(80), 30);
+    ui_draw_rect(s->vg, viz_tpms_x, viz_tpms_y, viz_tpms_w, viz_tpms_h, COLOR_BLACK_ALPHA(80), 20);
   }
 
   // Draw Border
   NVGcolor color = COLOR_WHITE_ALPHA(100);
-  ui_draw_rect(s->vg, viz_tpms_x, viz_tpms_y, viz_tpms_w, viz_tpms_h, color, 30, 5);
+  ui_draw_rect(s->vg, viz_tpms_x, viz_tpms_y, viz_tpms_w, viz_tpms_h, color, 20, 5);
 
   nvgTextAlign(s->vg, NVG_ALIGN_CENTER | NVG_ALIGN_BASELINE);
   const int pos_x = viz_tpms_x + (viz_tpms_w / 2);
@@ -490,32 +490,32 @@ static void ui_draw_tpms(UIState *s) {
   snprintf(tpmsRl, sizeof(tpmsRl), "%.1f", s->scene.tpmsPressureRl);
   snprintf(tpmsRr, sizeof(tpmsRr), "%.1f", s->scene.tpmsPressureRr);
   if (s->scene.tpmsPressureFl < 34) {
-    ui_draw_text(s->vg, pos_x-50, 160, tpmsFl, 50, COLOR_RED, s->font_sans_bold);
+    ui_draw_text(s->vg, pos_x-50, 160, tpmsFl, 55, COLOR_RED, s->font_sans_bold);
   } else if (s->scene.tpmsPressureFl > 50) {
-    ui_draw_text(s->vg, pos_x-50, 160, "N/A", 50, COLOR_WHITE_ALPHA(200), s->font_sans_semibold);
+    ui_draw_text(s->vg, pos_x-50, 160, "N/A", 55, COLOR_WHITE_ALPHA(200), s->font_sans_semibold);
   } else {
-    ui_draw_text(s->vg, pos_x-50, 160, tpmsFl, 50, COLOR_WHITE_ALPHA(200), s->font_sans_semibold);
+    ui_draw_text(s->vg, pos_x-50, 160, tpmsFl, 55, COLOR_WHITE_ALPHA(200), s->font_sans_semibold);
   }
   if (s->scene.tpmsPressureFr < 34) {
-    ui_draw_text(s->vg, pos_x+50, 160, tpmsFr, 50, COLOR_RED, s->font_sans_bold);
+    ui_draw_text(s->vg, pos_x+50, 160, tpmsFr, 55, COLOR_RED, s->font_sans_bold);
   } else if (s->scene.tpmsPressureFr > 50) {
-    ui_draw_text(s->vg, pos_x+50, 160, "N/A", 50, COLOR_WHITE_ALPHA(200), s->font_sans_semibold);
+    ui_draw_text(s->vg, pos_x+50, 160, "N/A", 55, COLOR_WHITE_ALPHA(200), s->font_sans_semibold);
   } else {
-    ui_draw_text(s->vg, pos_x+50, 160, tpmsFr, 50, COLOR_WHITE_ALPHA(200), s->font_sans_semibold);
+    ui_draw_text(s->vg, pos_x+50, 160, tpmsFr, 55, COLOR_WHITE_ALPHA(200), s->font_sans_semibold);
   }
   if (s->scene.tpmsPressureRl < 34) {
-    ui_draw_text(s->vg, pos_x-50, 200, tpmsRl, 50, COLOR_RED, s->font_sans_bold);
+    ui_draw_text(s->vg, pos_x-50, 200, tpmsRl, 55, COLOR_RED, s->font_sans_bold);
   } else if (s->scene.tpmsPressureRl > 50) {
-    ui_draw_text(s->vg, pos_x-50, 200, "N/A", 50, COLOR_WHITE_ALPHA(200), s->font_sans_semibold);
+    ui_draw_text(s->vg, pos_x-50, 200, "N/A", 55, COLOR_WHITE_ALPHA(200), s->font_sans_semibold);
   } else {
-    ui_draw_text(s->vg, pos_x-50, 200, tpmsRl, 50, COLOR_WHITE_ALPHA(200), s->font_sans_semibold);
+    ui_draw_text(s->vg, pos_x-50, 200, tpmsRl, 55, COLOR_WHITE_ALPHA(200), s->font_sans_semibold);
   }
   if (s->scene.tpmsPressureRr < 34) {
-    ui_draw_text(s->vg, pos_x+50, 200, tpmsRr, 50, COLOR_RED, s->font_sans_bold);
+    ui_draw_text(s->vg, pos_x+50, 200, tpmsRr, 55, COLOR_RED, s->font_sans_bold);
   } else if (s->scene.tpmsPressureRr > 50) {
-    ui_draw_text(s->vg, pos_x+50, 200, "N/A", 50, COLOR_WHITE_ALPHA(200), s->font_sans_semibold);
+    ui_draw_text(s->vg, pos_x+50, 200, "N/A", 55, COLOR_WHITE_ALPHA(200), s->font_sans_semibold);
   } else {
-    ui_draw_text(s->vg, pos_x+50, 200, tpmsRr, 50, COLOR_WHITE_ALPHA(200), s->font_sans_semibold);
+    ui_draw_text(s->vg, pos_x+50, 200, tpmsRr, 55, COLOR_WHITE_ALPHA(200), s->font_sans_semibold);
   }
 }
 
