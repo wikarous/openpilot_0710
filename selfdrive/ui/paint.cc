@@ -440,7 +440,7 @@ static void ui_draw_tpms(UIState *s) {
   char tpmsRl[32];
   char tpmsRr[32];
   int viz_tpms_w = 250;
-  int viz_tpms_h = 165;
+  int viz_tpms_h = 160;
   int viz_tpms_x = s->scene.viz_rect.x + s->scene.viz_rect.w - 510;
   int viz_tpms_y = s->scene.viz_rect.y + (bdr_s*1.5);
   float maxv = 0;
