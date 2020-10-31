@@ -128,8 +128,6 @@ class Planner():
     enabled = (long_control_state == LongCtrlState.pid) or (long_control_state == LongCtrlState.stopping)
     following = lead_1.status and lead_1.dRel < 45.0 and lead_1.vLeadK > v_ego and lead_1.aLeadK > 0.0
 
-    print('radar_distance = {}'.format(lead_1.dRel))
-
     # Calculate speed for normal cruise control
     if enabled and not self.first_loop and not sm['carState'].gasPressed:
       accel_limits = [float(x) for x in calc_cruise_accel_limits(v_ego, following)]
@@ -216,6 +214,11 @@ class Planner():
 
     # Send out fcw
     plan_send.plan.fcw = fcw
+
+    # Send radarstate(dRel, vRel, yRel)
+    plan_send.plan.ddRel = lead_1.dRel
+    plan_send.plan.yyRel = lead_1.yRel
+    plan_send.plan.vvRel = lead_1.vRel
 
     pm.send('plan', plan_send)
 

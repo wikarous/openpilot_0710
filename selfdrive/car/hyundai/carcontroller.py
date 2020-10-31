@@ -114,6 +114,10 @@ class CarController():
     self.yRel = 0
     self.vRel = 0
 
+    self.dRel1 = 0
+    self.yRel1 = 0
+    self.vRel1 = 0
+
     self.cruise_gap = 0.0
     self.cruise_gap_prev = 0
     self.cruise_gap_set_init = 0
@@ -151,6 +155,13 @@ class CarController():
     self.dRel, self.yRel, self.vRel = SpdController.get_lead(sm)
     self.model_speed, self.model_sum = self.SC.calc_va(sm, CS.out.vEgo)
 
+    plan = sm['plan']
+    self.dRel1 = plan.ddRel
+    self.yRel1 = plan.yyRel
+    self.vRel1 = plan.vvRel
+
+    print('drelr={}  yRelr={}  vRelr={}'.format(self.dRel, self.yRel, self.vRel))
+    print('drele={}  yRele={}  vRele={}'.format(self.dRel1, self.yRel1, self.vRel1))
 
     # Steering Torque
     if self.driver_steering_torque_above_timer:
